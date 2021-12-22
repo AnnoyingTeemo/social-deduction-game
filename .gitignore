@@ -3,6 +3,7 @@
 [Oo]bj/
 [Bb]uild/
 [Bb]uilds/
+[Ll]ogs/
 Assets/AssetStoreTools*
 
 # Visual Studio cache directory
@@ -43,3 +44,4 @@ I like cheese/Assets/Plugins.meta
 I like cheese/Assets/Gizmos/
 I like cheese/Assets/Photon/
 I like cheese/Assets/Plugins/
+*.log
