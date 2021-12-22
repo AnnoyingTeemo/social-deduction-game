@@ -35,3 +35,11 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+#Bolt
+I like cheese/Assets/Gizmos.meta
+I like cheese/Assets/Photon.meta
+I like cheese/Assets/Plugins.meta
+I like cheese/Assets/Gizmos/
+I like cheese/Assets/Photon/
+I like cheese/Assets/Plugins/
