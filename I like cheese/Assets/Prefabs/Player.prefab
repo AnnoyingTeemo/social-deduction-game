@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4150454818764514766}
   - component: {fileID: 8039511440953668045}
   - component: {fileID: 564590288622075073}
+  - component: {fileID: 7309926895137046266}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -110,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneGuid: 
-  _serializerGuid: 00000000-0000-0000-0000-000000000000
+  _serializerGuid: 09c5a245-fefd-4652-984f-d1fc83c00527
   _prefabId: 1
   _updateRate: 1
   _autoFreezeProxyFrames: 0
@@ -126,3 +127,15 @@ MonoBehaviour:
   _entityBehaviourQueryOption: 0
   _entityPriorityCalculatorQueryOption: 1
   _entityReplicationFilterQueryOption: 1
+--- !u!114 &7309926895137046266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6975515901544413158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a6f462912aef6a4ebff27c26cf93d6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
