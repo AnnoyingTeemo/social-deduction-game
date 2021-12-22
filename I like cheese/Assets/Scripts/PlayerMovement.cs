@@ -18,10 +18,16 @@ public class PlayerMovement : Photon.Bolt.EntityBehaviour<IPlayerState>
         Vector3 movement = Vector3.zero;
 
         if (Input.GetKey(KeyCode.A)) {
-            movement.x += speed;
+            movement.x -= speed;
         }
         if (Input.GetKey(KeyCode.D)) {
-            movement.x -= speed;
+            movement.x += speed;
+        }
+        if (Input.GetKey(KeyCode.W)) {
+            movement.z += speed;
+        }
+        if (Input.GetKey(KeyCode.S)) {
+            movement.z -= speed;
         }
 
         if (movement != Vector3.zero) {
