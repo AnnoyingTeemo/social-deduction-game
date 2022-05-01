@@ -5,10 +5,15 @@ using Photon.Bolt;
 
 public class PlayerMovement : Photon.Bolt.EntityBehaviour<IPlayerState>
 {
+    public Camera playerCamera;
+
     // Start is called before the first frame update
     public override void Attached()
     {
         state.SetTransforms(state.PlayerTransform, gameObject.transform);
+        if (entity.IsOwner) {
+            playerCamera.gameObject.SetActive(true);
+        }
     }
 
     // Update is called once per frame
