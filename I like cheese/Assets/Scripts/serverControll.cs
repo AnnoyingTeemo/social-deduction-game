@@ -23,11 +23,15 @@ public class serverControll : GlobalEventListener
 
     public override void SessionListUpdated(Map<Guid, UdpSession> sessionList)
     {
-        foreach (var session in sessionList) {
-            UdpSession photonSession = session.Value as UdpSession;
-            if (photonSession.Source == UdpSessionSource.Photon) {
-                BoltMatchmaking.JoinSession(photonSession);
-            }
-        }
+        string sessionID = "give this a better id";
+
+        BoltMatchmaking.JoinSession(sessionID);
+
+        //foreach (var session in sessionList) {
+        //    UdpSession photonSession = session.Value as UdpSession;
+        //    if (photonSession.Source == UdpSessionSource.Photon) {
+        //        BoltMatchmaking.JoinSession(photonSession);
+        //    }
+        //}
     }
 }
