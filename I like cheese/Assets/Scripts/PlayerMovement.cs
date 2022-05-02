@@ -68,32 +68,27 @@ public class PlayerMovement : Photon.Bolt.EntityBehaviour<IPlayerState>
             transform.Rotate(0, h, 0);
 
             //Let everyone know this players oxygen level
-            state.PlayerOxygen = oxygen;
 
-            oxygenText.GetComponent<Text>().text = "Oxygen: " + oxygen.ToString();
+            oxygenText.GetComponent<Text>().text = "Oxygen: " + state.PlayerOxygen.ToString();
         }
     }
 
     public void DrainOxygen() {
         if (entity.IsOwner) {
-            oxygen -= 1;
+            state.PlayerOxygen -= 1;
 
-            if (oxygen < 0) {
-                oxygen = 0;
+            if (state.PlayerOxygen < 0) {
+                state.PlayerOxygen = 0;
             }
-
-            state.PlayerOxygen = oxygen;
         }
     }
 
     public void GainOxygen(int amount) {
-        if (entity.IsOwner) {
-            oxygen += amount;
-            if (oxygen > maxOxygen) {
-                oxygen = maxOxygen;
-            }
+        state.PlayerOxygen = state.PlayerOxygen;
 
-            state.PlayerOxygen = oxygen;
+        state.PlayerOxygen += amount;
+        if (state.PlayerOxygen > maxOxygen) {
+            state.PlayerOxygen = maxOxygen;
         }
     }
 }

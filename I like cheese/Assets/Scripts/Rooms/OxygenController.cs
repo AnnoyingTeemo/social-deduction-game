@@ -11,21 +11,17 @@ public class OxygenController : Photon.Bolt.EntityBehaviour<IRoomState>
 
     public int oxygenDonateSpeed;
 
-    public List<GameObject> playersInRoom;
+    public GameObject playerInRoom;
+    public bool playerIsInRoom = false;
 
     // Start is called before the first frame update
     public void Start() {
-        if (!BoltNetwork.IsServer) return;
-
-        playersInRoom = new List<GameObject>();
-
-        InvokeRepeating("GiveOxygen", 1, 1);
-        state.RoomOxygen = maxOxygen;
-    }
-
-    private void Awake()
-    {
-        if (BoltNetwork.IsClient) { Destroy(this); }
+        if (entity.IsOwner) {
+            InvokeRepeating("GiveOxygen", 1, 1);
+        }
+        if (BoltNetwork.IsServer) {
+            state.RoomOxygen = maxOxygen;
+        }
     }
 
     // Update is called once per frame
@@ -35,10 +31,7 @@ public class OxygenController : Photon.Bolt.EntityBehaviour<IRoomState>
     }
 
     public void GiveOxygen() {
-        Debug.Log("AMONG US");
-        foreach (GameObject player in playersInRoom) {
-            player.GetComponent<PlayerMovement>().GainOxygen(donateOxygen());
-        }
+        playerInRoom.GetComponent<PlayerMovement>().GainOxygen(donateOxygen());
     }
 
     private int donateOxygen() {
@@ -58,7 +51,9 @@ public class OxygenController : Photon.Bolt.EntityBehaviour<IRoomState>
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player") {
-            playersInRoom.Add(other.gameObject);
+            if (other.gameObject.GetComponent<BoltEntity>().IsOwner) {
+                playerInRoom = other.gameObject;
+            }
         }
     }
 }
