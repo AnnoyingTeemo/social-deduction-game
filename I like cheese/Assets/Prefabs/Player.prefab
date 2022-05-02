@@ -246,6 +246,8 @@ MonoBehaviour:
   camspeed: 5
   speed: 50
   oxygen: 120
+  maxOxygen: 0
+  oxygenText: {fileID: 0}
 --- !u!54 &5556362310026417224
 Rigidbody:
   m_ObjectHideFlags: 0
