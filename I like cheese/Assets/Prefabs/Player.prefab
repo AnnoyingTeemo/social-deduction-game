@@ -245,6 +245,7 @@ MonoBehaviour:
   playerCamera: {fileID: 933459560366942688}
   camspeed: 5
   speed: 50
+  oxygen: 120
 --- !u!54 &5556362310026417224
 Rigidbody:
   m_ObjectHideFlags: 0

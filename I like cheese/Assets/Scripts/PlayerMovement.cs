@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Bolt;
+using UnityEngine.UI;
 
 public class PlayerMovement : Photon.Bolt.EntityBehaviour<IPlayerState>
 {
@@ -11,11 +12,17 @@ public class PlayerMovement : Photon.Bolt.EntityBehaviour<IPlayerState>
 
     public float speed;
 
+    public int oxygen;
+
+    public Text oxygenText;
+
     Rigidbody rgbdy;
 
     // Start is called before the first frame update
     public override void Attached()
     {
+        oxygenText = GameObject.Find("Oxygen").GetComponent<Text>();
+
         rgbdy = gameObject.GetComponent<Rigidbody>();
         state.SetTransforms(state.PlayerTransform, gameObject.transform);
         if (entity.IsOwner) {
@@ -52,5 +59,7 @@ public class PlayerMovement : Photon.Bolt.EntityBehaviour<IPlayerState>
         float h = camspeed * Input.GetAxis("Mouse X");
         // float v = verticalSpeed * Input.GetAxis("Mouse Y");
         transform.Rotate(0, h, 0);
+
+        oxygenText.GetComponent<Text>().text = "Oxygen: " + oxygen.ToString();
     }
 }
