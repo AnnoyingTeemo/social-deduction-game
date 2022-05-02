@@ -67,8 +67,6 @@ public class PlayerMovement : Photon.Bolt.EntityBehaviour<IPlayerState>
         //Let everyone know this players oxygen level
         state.PlayerOxygen = oxygen;
 
-        Debug.Log(state.PlayerOxygen);
-
         oxygenText.GetComponent<Text>().text = "Oxygen: " + oxygen.ToString();
     }
 

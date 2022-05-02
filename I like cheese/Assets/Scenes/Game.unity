@@ -471,6 +471,7 @@ GameObject:
   - component: {fileID: 390628623}
   - component: {fileID: 390628627}
   - component: {fileID: 390628628}
+  - component: {fileID: 390628629}
   m_Layer: 0
   m_Name: Engine Room
   m_TagString: Untagged
@@ -596,10 +597,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac88e7461915f248bc631f1f756b3de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxOxygen: 0
-  currentOxygen: 0
-  playerCount: 0
-  oxygenDonateSpeed: 0
+  maxOxygen: 500
+  currentOxygen: 500
+  playerCount: 1
+  oxygenDonateSpeed: 2
+  playersInRoom: []
+--- !u!65 &390628629
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390628622}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 5, z: 10}
+  m_Center: {x: 0, y: 2.5, z: 0}
 --- !u!1 &671599404
 GameObject:
   m_ObjectHideFlags: 0
