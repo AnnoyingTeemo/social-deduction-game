@@ -41,19 +41,19 @@ public class PlayerMovement : Photon.Bolt.EntityBehaviour<IPlayerState>
 
         if (Input.GetKey(KeyCode.A)) {
             //movement.x -= speed;
-            rgbdy.velocity = -transform.right * speed * Time.deltaTime;
+            rgbdy.AddForce(-transform.right * speed);
         }
         if (Input.GetKey(KeyCode.D)) {
             //movement.x += speed;
-            rgbdy.velocity = transform.right * speed * Time.deltaTime;
+            rgbdy.AddForce(transform.right * speed);
         }
         if (Input.GetKey(KeyCode.W)) {
             //movement.z += speed;
-            rgbdy.velocity = transform.forward * speed * Time.deltaTime;
+            rgbdy.AddForce(transform.forward * speed);
         }
         if (Input.GetKey(KeyCode.S)) {
             //movement.z -= speed;
-            rgbdy.velocity = -transform.forward * speed * Time.deltaTime;
+            rgbdy.AddForce(-transform.forward * speed);
         }
 
         if (movement != Vector3.zero) {

@@ -15,12 +15,17 @@ public class OxygenController : Photon.Bolt.EntityBehaviour<IRoomState>
 
     // Start is called before the first frame update
     public void Start() {
-        playersInRoom = new List<GameObject>();
+        if (!BoltNetwork.IsServer) return;
 
-        Debug.Log("WHqhdiwh");
+        playersInRoom = new List<GameObject>();
 
         InvokeRepeating("GiveOxygen", 1, 1);
         state.RoomOxygen = maxOxygen;
+    }
+
+    private void Awake()
+    {
+        if (BoltNetwork.IsClient) { Destroy(this); }
     }
 
     // Update is called once per frame
