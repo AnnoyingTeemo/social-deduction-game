@@ -22,11 +22,13 @@ public class PlayerMovement : Photon.Bolt.EntityBehaviour<IPlayerState>
     // Start is called before the first frame update
     public override void Attached()
     {
+        state.SetTransforms(state.PlayerTransform, gameObject.transform);
+
         if (entity.IsOwner) {
             oxygenText = GameObject.Find("Oxygen").GetComponent<Text>();
 
             rgbdy = gameObject.GetComponent<Rigidbody>();
-            state.SetTransforms(state.PlayerTransform, gameObject.transform);
+            
             state.PlayerOxygen = oxygen;
             if (entity.IsOwner) {
                 playerCamera.gameObject.SetActive(true);
