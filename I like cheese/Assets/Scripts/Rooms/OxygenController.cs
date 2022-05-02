@@ -12,7 +12,6 @@ public class OxygenController : Photon.Bolt.EntityBehaviour<IRoomState>
     public int oxygenDonateSpeed;
 
     public GameObject playerInRoom;
-    public bool playerIsInRoom = false;
 
     // Start is called before the first frame update
     public void Start() {
@@ -31,7 +30,9 @@ public class OxygenController : Photon.Bolt.EntityBehaviour<IRoomState>
     }
 
     public void GiveOxygen() {
-        playerInRoom.GetComponent<PlayerMovement>().GainOxygen(donateOxygen());
+        if (playerInRoom != null) {
+            playerInRoom.GetComponent<PlayerMovement>().GainOxygen(donateOxygen());
+        }
     }
 
     private int donateOxygen() {
@@ -53,6 +54,15 @@ public class OxygenController : Photon.Bolt.EntityBehaviour<IRoomState>
         if (other.gameObject.tag == "Player") {
             if (other.gameObject.GetComponent<BoltEntity>().IsOwner) {
                 playerInRoom = other.gameObject;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player") {
+            if (other.gameObject.GetComponent<BoltEntity>().IsOwner) {
+                playerInRoom = null;
             }
         }
     }

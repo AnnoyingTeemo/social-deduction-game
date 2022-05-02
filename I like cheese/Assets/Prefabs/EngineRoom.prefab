@@ -141,8 +141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxOxygen: 500
-  oxygenDonateSpeed: 2
-  playersInRoom: []
+  oxygenDonateSpeed: 10
+  playerInRoom: {fileID: 0}
 --- !u!65 &2411937573187254458
 BoxCollider:
   m_ObjectHideFlags: 0
