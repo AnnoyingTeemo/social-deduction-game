@@ -36,16 +36,21 @@ public class OxygenController : Photon.Bolt.EntityBehaviour<IRoomState>
     }
 
     private int donateOxygen() {
-        if (state.RoomOxygen - oxygenDonateSpeed > 0) {
-            state.RoomOxygen = state.RoomOxygen - oxygenDonateSpeed;
-            state.RoomOxygen = state.RoomOxygen;
-            return oxygenDonateSpeed;
+        if (maxOxygen != 0) {
+            if (state.RoomOxygen - oxygenDonateSpeed > 0) {
+                state.RoomOxygen = state.RoomOxygen - oxygenDonateSpeed;
+                state.RoomOxygen = state.RoomOxygen;
+                return oxygenDonateSpeed;
+            }
+            else {
+                int returnNum = (state.RoomOxygen - oxygenDonateSpeed) * -1;
+                state.RoomOxygen = 0;
+
+                return returnNum;
+            }
         }
         else {
-            int returnNum = (state.RoomOxygen - oxygenDonateSpeed) * -1;
-            state.RoomOxygen = 0;
-             
-            return returnNum;
+            return oxygenDonateSpeed;
         }
     }
 

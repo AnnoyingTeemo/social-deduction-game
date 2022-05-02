@@ -5,16 +5,24 @@ using Photon.Bolt;
 using Photon.Bolt.Matchmaking;
 using UdpKit;
 using System;
+using UnityEngine.UI;
 
 public class serverControll : GlobalEventListener
 {
+    public Text lobbyCode;
+
     public void startHost() {
         BoltLauncher.StartServer();
     }
 
     public override void BoltStartDone()
     {
-        BoltMatchmaking.CreateSession(sessionID: "give this a better id", sceneToLoad: "Game");
+        if (lobbyCode.text != "") {
+            BoltMatchmaking.CreateSession(sessionID: lobbyCode.text, sceneToLoad: "Game");
+        }
+        else {
+            BoltMatchmaking.CreateSession(sessionID: "LobbyCode", sceneToLoad: "Game");
+        }
     }
 
     public void startClient() {
@@ -23,7 +31,11 @@ public class serverControll : GlobalEventListener
 
     public override void SessionListUpdated(Map<Guid, UdpSession> sessionList)
     {
-        string sessionID = "give this a better id";
+        string sessionID = lobbyCode.text;
+
+        if (sessionID == "") {
+            sessionID = "LobbyCode";
+        }
 
         BoltMatchmaking.JoinSession(sessionID);
 
