@@ -48,7 +48,6 @@ public class NetworkCallbacks : GlobalEventListener
 
     public override void OnEvent(GameStart evnt)
     {
-        Debug.Log(evnt.String);
         foreach (GameObject players in playerList) {            
             int randomLocation = Random.Range(0, spawnLocations.Count);
             players.transform.position = spawnLocations[randomLocation];

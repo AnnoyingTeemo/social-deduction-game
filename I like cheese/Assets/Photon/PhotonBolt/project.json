@@ -323,22 +323,7 @@
     },
     {
       "$type": "Photon.Bolt.Compiler.EventDefinition, bolt.compiler",
-      "Properties": [
-        {
-          "Name": "String",
-          "Enabled": true,
-          "Expanded": true,
-          "ReplicationMode": 1,
-          "Priority": 1,
-          "PropertyType": {
-            "$type": "Photon.Bolt.Compiler.PropertyTypeString, bolt.compiler",
-            "MaxLength": 1
-          },
-          "AssetSettings": {
-            "$type": "Photon.Bolt.Compiler.PropertyEventSettings, bolt.compiler"
-          }
-        }
-      ],
+      "Properties": [],
       "EntitySenders": 3,
       "Name": "GameStart",
       "Guid": "a72b63b4-4cd4-4395-82a8-f8c6b5c7075d",

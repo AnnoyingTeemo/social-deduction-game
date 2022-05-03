@@ -82,7 +82,6 @@ public class PlayerMovement : EntityEventListener<IPlayerState>
                 if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 2)) {
                     if (hit.collider.gameObject.tag == "StartButton") {
                         var startEvent = GameStart.Create(GlobalTargets.Everyone);
-                        startEvent.String = "Among us";
                         startEvent.Send();
                     }
                 }
