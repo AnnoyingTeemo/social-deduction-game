@@ -81,7 +81,7 @@ public class PlayerMovement : EntityEventListener<IPlayerState>
                 // Does the ray intersect any objects excluding the player layer
                 if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 2)) {
                     if (hit.collider.gameObject.tag == "StartButton") {
-                        var startEvent = GameStart.Create(entity);
+                        var startEvent = GameStart.Create(GlobalTargets.Everyone);
                         startEvent.String = "Among us";
                         startEvent.Send();
                     }
@@ -90,13 +90,13 @@ public class PlayerMovement : EntityEventListener<IPlayerState>
         }
     }
 
-    public override void OnEvent(GameStart evnt)
-    {
-        Debug.Log(evnt.String);
+    //public override void OnEvent(GameStart evnt)
+    //{
+    //    Debug.Log(evnt.String);
 
-        int randomLocation = Random.Range(0, spawnLocations.Count);
-        gameObject.transform.position = spawnLocations[randomLocation];
-    }
+    //    int randomLocation = Random.Range(0, spawnLocations.Count);
+    //    gameObject.transform.position = spawnLocations[randomLocation];
+    //}
 
     public void DrainOxygen() {
         if (entity.IsOwner) {

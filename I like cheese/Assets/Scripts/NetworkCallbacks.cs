@@ -13,6 +13,10 @@ public class NetworkCallbacks : GlobalEventListener
 
     public GameObject weaponsRoom;
 
+    public List<Vector3> spawnLocations = new List<Vector3>();
+    public List<GameObject> playerList = new List<GameObject>();
+
+    [BoltGlobalBehaviour]
     public override void SceneLoadLocalDone(string scene, IProtocolToken token)
     {
         Vector3 spawnPos = new Vector3(0, 0, 0);
@@ -39,5 +43,15 @@ public class NetworkCallbacks : GlobalEventListener
         spawnPos = new Vector3(x, 5, y);
 
         GameObject playerTemp = BoltNetwork.Instantiate(player, spawnPos, Quaternion.identity);
+        playerList.Add(playerTemp);
+    }
+
+    public override void OnEvent(GameStart evnt)
+    {
+        Debug.Log(evnt.String);
+        foreach (GameObject players in playerList) {            
+            int randomLocation = Random.Range(0, spawnLocations.Count);
+            players.transform.position = spawnLocations[randomLocation];
+        }
     }
 }

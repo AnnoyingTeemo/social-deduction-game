@@ -339,6 +339,7 @@
           }
         }
       ],
+      "EntitySenders": 3,
       "Name": "GameStart",
       "Guid": "a72b63b4-4cd4-4395-82a8-f8c6b5c7075d",
       "Groups": []
