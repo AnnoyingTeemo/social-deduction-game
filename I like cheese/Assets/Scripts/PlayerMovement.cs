@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Bolt;
 using UnityEngine.UI;
 
-public class PlayerMovement : Photon.Bolt.EntityBehaviour<IPlayerState>
+public class PlayerMovement : EntityEventListener<IPlayerState>
 {
     public Camera playerCamera;
 
@@ -18,6 +18,8 @@ public class PlayerMovement : Photon.Bolt.EntityBehaviour<IPlayerState>
     public Text oxygenText;
 
     Rigidbody rgbdy;
+
+    public List<Vector3> spawnLocations = new List<Vector3>();
 
     // Start is called before the first frame update
     public override void Attached()
@@ -72,7 +74,28 @@ public class PlayerMovement : Photon.Bolt.EntityBehaviour<IPlayerState>
             //Let everyone know this players oxygen level
 
             oxygenText.GetComponent<Text>().text = "Oxygen: " + state.PlayerOxygen.ToString();
+
+
+            if (Input.GetKeyDown(KeyCode.E)) {
+                RaycastHit hit;
+                // Does the ray intersect any objects excluding the player layer
+                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 2)) {
+                    if (hit.collider.gameObject.tag == "StartButton") {
+                        var startEvent = GameStart.Create(entity);
+                        startEvent.String = "Among us";
+                        startEvent.Send();
+                    }
+                }
+            }
         }
+    }
+
+    public override void OnEvent(GameStart evnt)
+    {
+        Debug.Log(evnt.String);
+
+        int randomLocation = Random.Range(0, spawnLocations.Count);
+        gameObject.transform.position = spawnLocations[randomLocation];
     }
 
     public void DrainOxygen() {

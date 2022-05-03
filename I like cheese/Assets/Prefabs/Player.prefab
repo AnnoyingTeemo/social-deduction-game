@@ -248,6 +248,9 @@ MonoBehaviour:
   oxygen: 60
   maxOxygen: 120
   oxygenText: {fileID: 0}
+  spawnLocations:
+  - {x: 0, y: 2, z: 0}
+  - {x: 0, y: 2, z: 32.49}
 --- !u!54 &5556362310026417224
 Rigidbody:
   m_ObjectHideFlags: 0

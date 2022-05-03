@@ -15,7 +15,6 @@ public class NetworkCallbacks : GlobalEventListener
 
     public override void SceneLoadLocalDone(string scene, IProtocolToken token)
     {
-
         Vector3 spawnPos = new Vector3(0, 0, 0);
         if (BoltNetwork.IsServer) {
             BoltNetwork.Instantiate(engineRoom, spawnPos, Quaternion.identity);
@@ -39,6 +38,6 @@ public class NetworkCallbacks : GlobalEventListener
 
         spawnPos = new Vector3(x, 5, y);
 
-        BoltNetwork.Instantiate(player, spawnPos, Quaternion.identity);
+        GameObject playerTemp = BoltNetwork.Instantiate(player, spawnPos, Quaternion.identity);
     }
 }

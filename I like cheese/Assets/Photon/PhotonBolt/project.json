@@ -320,6 +320,28 @@
       "Name": "RoomState",
       "Guid": "5387818d-6c4e-4297-9eb3-2f61a2179b81",
       "Groups": []
+    },
+    {
+      "$type": "Photon.Bolt.Compiler.EventDefinition, bolt.compiler",
+      "Properties": [
+        {
+          "Name": "String",
+          "Enabled": true,
+          "Expanded": true,
+          "ReplicationMode": 1,
+          "Priority": 1,
+          "PropertyType": {
+            "$type": "Photon.Bolt.Compiler.PropertyTypeString, bolt.compiler",
+            "MaxLength": 1
+          },
+          "AssetSettings": {
+            "$type": "Photon.Bolt.Compiler.PropertyEventSettings, bolt.compiler"
+          }
+        }
+      ],
+      "Name": "GameStart",
+      "Guid": "a72b63b4-4cd4-4395-82a8-f8c6b5c7075d",
+      "Groups": []
     }
   ],
   "ActiveGroup": "Everything"
