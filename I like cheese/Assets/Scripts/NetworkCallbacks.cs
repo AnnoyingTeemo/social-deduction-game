@@ -9,9 +9,9 @@ public class NetworkCallbacks : GlobalEventListener
 
     public GameObject lobby;
 
-    public GameObject engineRoom;
+    public GameObject Room;
 
-    public GameObject weaponsRoom;
+    //public GameObject weaponsRoom;
 
     public List<Vector3> spawnLocations = new List<Vector3>();
     public List<GameObject> playerList = new List<GameObject>();
@@ -21,15 +21,17 @@ public class NetworkCallbacks : GlobalEventListener
     {
         Vector3 spawnPos = new Vector3(0, 0, 0);
         if (BoltNetwork.IsServer) {
-            BoltNetwork.Instantiate(engineRoom, spawnPos, Quaternion.identity);
+
+            GameObject room = BoltNetwork.Instantiate(Room, spawnPos, Quaternion.identity);
+
 
             spawnPos = new Vector3(0, 0, (float)32.49);
 
-            BoltNetwork.Instantiate(weaponsRoom, spawnPos, Quaternion.identity);
-
+            room = BoltNetwork.Instantiate(Room, spawnPos, Quaternion.identity);
+            room.transform.RotateAround(room.transform.position, room.transform.up, 180);
             spawnPos = new Vector3(-20, 0, -20);
 
-            BoltNetwork.Instantiate(lobby, spawnPos, Quaternion.identity);
+            room = BoltNetwork.Instantiate(lobby, spawnPos, Quaternion.identity);
 
         }
         int minx = -24;
