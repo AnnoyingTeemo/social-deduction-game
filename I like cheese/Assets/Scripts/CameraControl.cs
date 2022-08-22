@@ -9,16 +9,35 @@ public class CameraControl : MonoBehaviour
     public float maxRotation;
     public float minRotation;
 
+    private bool mouselocked;
+
     public float rotationY; public float sensitivityY = 1;
     // Use this for initialization
     void Start()
     {
+        mouselocked = true;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         transform.rotation = Quaternion.identity;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            if (mouselocked) {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                mouselocked = false;
+            }
+            else {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                mouselocked = true;
+            }
+        }
         LockedRotation();
     }
 
