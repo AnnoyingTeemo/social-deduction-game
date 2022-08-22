@@ -26,22 +26,24 @@ public class TestGunFire : EntityEventListener<IPlayerWeaponState>
             if (Input.GetMouseButtonUp(0)) {
                 state.triggerPressed = false;
             }
-        }
 
-        if (state.triggerPressed) {
-            int layerMask = 1 << 7;
+            if (state.triggerPressed) {
+                int layerMask = 1 << 7;
 
-            //layerMask = ~layerMask;
+                //layerMask = ~layerMask;
 
-            RaycastHit hit;
+                RaycastHit hit;
 
-            if (Physics.Raycast(child.transform.position, child.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask)) {
-                Debug.DrawRay(child.transform.position, child.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-                Debug.Log("Did Hit");
-            }
-            else {
-                Debug.DrawRay(child.transform.position, child.transform.TransformDirection(Vector3.forward) * 1000, Color.white);
-                Debug.Log("Did not Hit");
+                if (Physics.Raycast(child.transform.position, child.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask)) {
+                    Debug.DrawRay(child.transform.position, child.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+
+                    hit.collider.gameObject.GetComponent<PlayerMovement>().takeDamage(1);
+                    Debug.Log("Did Hit");
+                }
+                else {
+                    Debug.DrawRay(child.transform.position, child.transform.TransformDirection(Vector3.forward) * 1000, Color.white);
+                    Debug.Log("Did not Hit");
+                }
             }
         }
     }

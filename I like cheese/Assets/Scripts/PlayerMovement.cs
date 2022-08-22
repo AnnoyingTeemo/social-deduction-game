@@ -15,6 +15,11 @@ public class PlayerMovement : EntityEventListener<IPlayerState>
     public int oxygen;
     public int maxOxygen;
 
+    [SerializeField]
+    private int currentHealth;
+    [SerializeField]
+    private int maxHealth = 100;
+
     public Text oxygenText;
 
     Rigidbody rgbdy;
@@ -26,7 +31,11 @@ public class PlayerMovement : EntityEventListener<IPlayerState>
     {
         state.SetTransforms(state.PlayerTransform, gameObject.transform);
 
+        currentHealth = maxHealth;
+
         if (entity.IsOwner) {
+            state.PlayerCurrentHealth = currentHealth;
+            state.PlayerMaxHealth = maxHealth;
             oxygenText = GameObject.Find("Oxygen").GetComponent<Text>();
 
             rgbdy = gameObject.GetComponent<Rigidbody>();
@@ -43,6 +52,8 @@ public class PlayerMovement : EntityEventListener<IPlayerState>
     // Update is called once per frame
     public override void SimulateOwner()
     {
+        currentHealth = state.PlayerCurrentHealth;
+
         if (entity.IsOwner) {
             Vector3 movement = Vector3.zero;
 
@@ -114,5 +125,14 @@ public class PlayerMovement : EntityEventListener<IPlayerState>
         if (state.PlayerOxygen > maxOxygen) {
             state.PlayerOxygen = maxOxygen;
         }
+    }
+
+    public void takeDamage(int damage) {
+        currentHealth -= damage;
+        if (currentHealth < 0) {
+            currentHealth = 0;
+        }
+
+        state.PlayerCurrentHealth = currentHealth;
     }
 }
